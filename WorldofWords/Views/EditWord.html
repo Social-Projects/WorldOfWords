@@ -1,0 +1,108 @@
+﻿<div class="modal-header bg-primary" align="center">
+    <button class="modal-title close" ng-click="cancel()">x</button>
+    <h3 class="modal-title">Edit WordTranslation</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Word</label>
+                    <div class="input-group col-sm-8">
+                        <input class="form-control" ng-model='oldOriginalWord.OriginalWord' ng-readonly="isWordDisabled" required autofocus
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Description</label>
+                    <div class="input-group col-sm-8">
+                        <input class="form-control" ng-model='oldOriginalWord.Description'
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Transcription</label>
+                    <div class="input-group col-sm-8">
+                        <input class="form-control" ng-model='oldOriginalWord.Transcription'
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Translation</label>
+                    <div class="input-group col-sm-8">
+                        <input class="form-control" ng-model="selectedTranslation"
+                               data-typeahead="translation as translation.Value for translation in searchTranslations($viewValue)"
+                               data-typeahead-no-results="not found"
+                               data-typeahead-min-length="0"
+                               data-typeahead-wait-ms="400"
+                               ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{translationLanguage.ShortName}}" }'
+                               placeholder="Search translation" required autofocus />
+                        <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="editTran()">
+                <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                 </button>
+                 </span>
+                    </div>
+                    </div>
+                <div class="row" style="margin: -5px 0px 9px 0px" align="center">
+                    <showwords data="oldOriginalWord.Translations" remove="deleteTranslationsToEdit(index)" withid="true">
+                    </showwords>
+                </div>
+                
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Synonyms</label>
+                        <div class="input-group col-sm-8">
+                            <input class="form-control" ng-model="selectedSyn"
+                                   data-typeahead="word as word.Value for word in searchWords($viewValue)"
+                                   data-typeahead-no-results="not found"
+                                   data-typeahead-min-length="0"
+                                   data-typeahead-wait-ms="400" 
+                                    ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }'
+                                   placeholder="Search Synonym" required autofocus />                      
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="editSyn()">
+                                    <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                                </button>
+                            </span>
+                            
+                        </div>
+                        </div>
+                <div  class="row" style="margin:-5px auto 9px auto" align="center">
+                    <showwords data="oldOriginalWord.Synonims" remove="deleteSynonymsToEdit(index)" withid="true">
+                    </showwords>
+                </div>
+                
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Tags</label>
+                        <div class="input-group col-sm-8">
+                            <input class="form-control"
+                                   ng-model='selectedTag'
+                                   data-typeahead="tag as tag.Value for tag in searchTags($viewValue)"
+                                   data-typeahead-no-results="not found"
+                                   data-typeahead-min-length="0"
+                                   data-typeahead-wait-ms="400"
+                                   placeholder="Search Tag"
+                                   ng-virtual-keyboard='{"showKbSelect":true, "keyboardLocation":"under-right", "kt":"{{originalLanguage.ShortName}}" }' required autofocus />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="editTag()">
+                                    <img src="http://thegreatcloset.com/wp-content/uploads/2015/04/add-to-cart-light.png">
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                <div class="row" style="margin: -5px 0px 9px 0px" align="center">
+                    <showwords data="oldOriginalWord.Tags" remove="deleteTagsToEdit(index)" withid="true">
+                    </showwords>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="saveWord()">
+            Update word
+        </button>
+    </span>
+</div>
